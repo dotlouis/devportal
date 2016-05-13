@@ -1,0 +1,16 @@
+extends base
+
+block vars
+  - var title = '500'
+
+block body
+  .container.docs
+    h1.text-center 500
+    .row
+      .col-xs-12.col-md-offset-2.col-md-8
+        p.text-justify.
+          Oops, sorry about this, it should not happen.
+          Shoot an email to <a href="mailto:#{supportEmail}">#{supportEmail}</a>
+          with the error message below to get help.
+        pre.
+         #{error.message}

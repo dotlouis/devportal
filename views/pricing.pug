@@ -1,0 +1,21 @@
+extends base
+
+block vars
+  - var title = 'Pricing'
+
+block body
+  .container.pricing
+    h1.text-center Pricing
+    .row
+      .col-xs-offset-2.col-xs-8.col-md-offset-4.col-md-4.price-box.text-center
+        h2 #{costPerQuery}&cent; / query
+        p.text-justify.
+          We believe in simple pricing.  Everyone pays the same usage-based
+          feeds regardless of size.
+        p.text-justify.end.
+          <i>Regardless of how many requests you make, BTC exchange rates are
+          updated once per hour.</i>
+    .row
+      .col-xs-offset-2.col-xs-8.col-md-offset-4.col-md-4
+        a(href='/register')
+          button.btn.btn-lg.btn-primary.center-block(type='button') Get Started!

@@ -1,0 +1,17 @@
+extends base
+
+block vars
+  - var title = 'Home'
+
+block body
+  .container.index
+    h1.text-center Get BTC Rates via SMS
+    .row
+      .col-xs-12.col-md-offset-2.col-md-8
+        .jumbotron.text-justify
+          p.
+            #{siteTitle} makes it easy to track the value of Bitcoin via SMS.
+            Each time you hit the API service, we'll SMS you the current Bitcoin
+            price in a user-friendly way.
+          a(href='/register')
+            button.btn.btn-lg.btn-primary.center-block(type='button') Get Started!

@@ -1,0 +1,79 @@
+extends base
+
+block vars
+  - var title = 'Docs'
+
+block body
+  .container.docs
+    h1.text-center API Documentation
+    .row
+      .col-xs-12.col-md-offset-2.col-md-8
+        p.text-justify
+          i.
+            This page contains the documentation for this API service.  There is
+            only a single API endpoint available right now, so this document is
+            fairly short.
+        p.text-justify
+          i.
+            Questions? Please email <a href="mailto:support@apiservice.com">support@apiservice.com</a>
+            for help!
+        h2 REST Endpoints
+        h3 POST /api/message
+        span Description
+        p.description.
+          This API endpoint takes in a phone number, and sends this phone an
+          SMS message with the current Bitcoin exchange rate.
+        span Input
+        .table-box
+          table.table.table-bordered
+            thead
+              tr
+                th Field
+                th Type
+                th Required
+            tbody
+              tr
+                td phoneNumber
+                td String
+                td true
+        span Success Output
+        .table-box
+          table.table.table-bordered
+            thead
+              tr
+                th Field
+                th Type
+                th Example
+            tbody
+              tr
+                td phoneNumber
+                td String
+                td "+18182223333"
+              tr
+                td message
+                td String
+                td "1 Bitcoin is currently worth $225.42 USD."
+              tr
+                td cost
+                td Integer
+                td #{costPerQuery}
+        span Failure Output
+        .table-box
+          table.table.table-bordered
+            thead
+              tr
+                th Field
+                th Type
+                th Example
+            tbody
+              tr
+                td error
+                td String
+                td "We couldn't send the SMS message. Try again soon!"
+        span Example Request
+        pre.
+          $ curl -X POST \
+              --user 'id:secret' \
+              --data '{"phoneNumber": "+18182223333"}' \
+              -H 'Content-Type: application/json' \
+              'http://apiservice.com/api/message'

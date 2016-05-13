@@ -1,0 +1,12 @@
+{
+	"node": true,
+	"esnext": true,
+	"quotmark": "single",
+	"camelcase": true,
+	"eqnull": true,
+	"newcap": true,
+	"latedef": "nofunc",
+	"immed": true,
+	"nonew": true,
+	"sub": true
+}

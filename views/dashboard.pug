@@ -1,0 +1,49 @@
+extends base
+
+block vars
+  - var title = 'Dashboard'
+
+block body
+  .container.dashboard
+    .row.api-keys
+      ul.list-group
+        .col-xs-offset-1.col-xs-10
+          li.list-group-item.api-key-container
+            .left
+              strong API Key ID:
+              span.api-key-id #{user.apiKeys.items[0].id}
+            .right
+              strong API Key Secret:
+              span.api-key-secret #{user.apiKeys.items[0].secret}
+      form(action='/dashboard/renew', method='POST')
+        button Renew
+    .row.widgets
+      .col-md-offset-1.col-md-5
+        .panel.panel-primary
+          .panel-heading.text-center
+            h3.panel-title Analytics
+          .analytics-content.text-center
+            span.total-queries #{user.customData.totalQueries}
+            br
+            span
+              i.
+                *total queries
+      .col-md-5
+        .panel.panel-primary
+          .panel-heading.text-center
+            h3.panel-title Billing
+          .billing-content.text-center
+            span.account-balance $#{(user.customData.balance / 100).toFixed(2)}
+            br
+            span
+              i.
+                *current account balance
+            form(action='/dashboard/charge', method='POST')
+              script.stripe-button(
+                src = 'https://checkout.stripe.com/checkout.js',
+                data-email = user.email,
+                data-key = stripePublishableKey,
+                data-name = siteTitle,
+                data-amount = '2000',
+                data-allow-remember-me = 'false'
+              )

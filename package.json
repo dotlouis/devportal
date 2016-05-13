@@ -1,0 +1,32 @@
+{
+  "name": "devportal",
+  "version": "1.0.0",
+  "description": "Devportal is a webapp for developers to consume APIs",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dotlouis/devportal.git"
+  },
+  "author": "github.com/dotlouis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dotlouis/devportal/issues"
+  },
+  "homepage": "https://github.com/dotlouis/devportal#readme",
+  "dependencies": {
+    "async": "^2.0.0-rc.3",
+    "body-parser": "^1.15.0",
+    "bunyan": "^1.8.1",
+    "express": "^4.13.4",
+    "express-bunyan-logger": "^1.2.0",
+    "express-stormpath": "^3.1.2",
+    "pug": "^2.0.0-alpha6",
+    "request": "^2.72.0",
+    "stripe": "^4.5.0",
+    "uuid": "^2.0.2"
+  }
+}
