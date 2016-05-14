@@ -43,7 +43,7 @@ router.post('/renew', function(req, res, next){
     uri:gatewayUrl,
     json: true
   }, function(err, response, body){
-      if(err) next(err);
+      if(err) return next(err);
       if(!body.data || body.data.length < 1){
         err = `No apiKeys found for this consumer in gateway.`;
         res.status(500).send(err);
@@ -55,7 +55,7 @@ router.post('/renew', function(req, res, next){
           uri: `${gatewayUrl}/${body.data[0].id}`,
           json: true
         }, function(err, response, body){
-          if(err) next(err);
+          if(err) return next(err);
             req.log.info(`Deleted the apiKey from Gateway`);
             // res.redirect('/dashboard');
 
@@ -68,8 +68,7 @@ router.post('/renew', function(req, res, next){
                 password: ENV.STORMPATH_CLIENT_APIKEY_SECRET
               }
             }, function(err, response, body){
-              console.log(body);
-              if(err) next(err);
+              if(err) return next(err);
                 req.log.info(`Deleted the apiKey from Stormpath`);
 
               createApiKey(req.user, req.log, function(){

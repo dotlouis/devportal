@@ -1,9 +1,12 @@
 'use strict';
 
 var express = require('express');
+var stormpath = require('express-stormpath');
 
 // Globals
 var router = express.Router();
+
+router.use(stormpath.getUser);
 
 // Routes
 router.get('/', function(req, res) {

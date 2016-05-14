@@ -36,7 +36,8 @@ html(lang='en')
               li(class='#{nav.Dashboard}')
                 a(href='/dashboard') Dashboard
               li(class='#{nav.Logout}')
-                a(href='/logout') Logout
+                form(action='/logout', method='POST')
+                  button Logout
             else
               li(class='#{nav.Login}')
                 a(href='/login') Login

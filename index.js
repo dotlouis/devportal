@@ -52,6 +52,9 @@ app.use(stormpath.init(app, {
     apiKeys: true
   },
   web: {
+    login: {
+      nextUri: '/dashboard'
+    },
     register: {
       autoLogin: true,
       nextUri: '/dashboard',
@@ -93,13 +96,15 @@ app.use(stormpath.init(app, {
           }
         }, function(err, response, consumer){
           if(err) cb(err);
-          if(!consumer.id){
-            cb(new Error(`Consumer already exist in gateway.`));
-          }
           else{
-            req.log.info(`Consumer created in gateway`);
-            // create apiKeys in Kong and stormpath
-            createApiKey(account, req.log, cb);
+            if(!consumer.id){
+              cb(new Error(`Consumer already exist in gateway.`));
+            }
+            else{
+              req.log.info(`Consumer created in gateway`);
+              // create apiKeys in Kong and stormpath
+              createApiKey(account, req.log, cb);
+            }
           }
         });
 
