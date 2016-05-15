@@ -103,7 +103,25 @@ app.use(stormpath.init(app, {
             else{
               req.log.info(`Consumer created in gateway`);
               // create apiKeys in Kong and stormpath
-              createApiKey(account, req.log, cb);
+              createApiKey(account, req.log, function(){
+                // set the rate-limit
+                request.post({
+                  uri: `${ENV.KONG_URL}/apis/${ENV.KONG_API}/plugins`,
+                  json: true,
+                  body: {
+                    name: 'rate-limiting',
+                    consumer_id: consumer.id,
+                    config: {
+                      hour: ENV.HOUR_RATE_LIMIT,
+                      async: true
+                    }
+                  }
+                }, function(err, response, body){
+                  if(err) cb(err);
+                  req.log.info(`Rate limit has been set for this consumer`);
+                  cb();
+                });
+              });
             }
           }
         });
